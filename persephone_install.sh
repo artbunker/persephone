@@ -162,22 +162,22 @@ mkdir -p "${persephone}/templates"
 
 echo cloning persephone projects to repos directory...
 cd "${persephone}/repos"
-git clone https://github.com/secretisdead/accesslog.git
-git clone https://github.com/secretisdead/accounts.git
-git clone https://github.com/secretisdead/bans.git
-git clone https://github.com/secretisdead/bansfrontend.git
-git clone https://github.com/secretisdead/comments.git
-git clone https://github.com/secretisdead/commentsfrontend.git
-git clone https://github.com/secretisdead/legal.git
-git clone https://github.com/secretisdead/media.git
-git clone https://github.com/secretisdead/mediafrontend.git
-git clone https://github.com/secretisdead/patreon.git
-git clone https://github.com/secretisdead/patreonfrontend.git
-git clone https://github.com/secretisdead/persephone.git
-git clone https://github.com/secretisdead/stickers.git
-git clone https://github.com/secretisdead/stickersfrontend.git
-git clone https://github.com/secretisdead/thirdpartyauth.git
-git clone https://github.com/secretisdead/users.git
+git clone https://github.com/artbunker/accesslog.git
+git clone https://github.com/artbunker/accounts.git
+git clone https://github.com/artbunker/bans.git
+git clone https://github.com/artbunker/bansfrontend.git
+git clone https://github.com/artbunker/comments.git
+git clone https://github.com/artbunker/commentsfrontend.git
+git clone https://github.com/artbunker/legal.git
+git clone https://github.com/artbunker/media.git
+git clone https://github.com/artbunker/mediafrontend.git
+git clone https://github.com/artbunker/patreon.git
+git clone https://github.com/artbunker/patreonfrontend.git
+git clone https://github.com/artbunker/persephone.git
+git clone https://github.com/artbunker/stickers.git
+git clone https://github.com/artbunker/stickersfrontend.git
+git clone https://github.com/artbunker/thirdpartyauth.git
+git clone https://github.com/artbunker/users.git
 git clone https://github.com/secretisdead/base64_url.git
 git clone https://github.com/secretisdead/idcollection.git
 git clone https://github.com/secretisdead/pagination_from_request.git
