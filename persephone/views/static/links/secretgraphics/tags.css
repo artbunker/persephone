@@ -2,8 +2,8 @@
 	--tag_foreground: #ffffff;
 	--tag_background: #4080c0;
 
-	--tag_author: #408000;
-	--tag_name: #ff4000;
+	--tag_creator: #ff4000;
+	--tag_character: #408000;
 	--tag_source: #804000;
 	--tag_title: #ff0080;
 	--tag_filename: #c04080;
@@ -70,13 +70,13 @@
 	text-decoration: none;
 }
 /*normal*/
-.tag[data-tag^="author:"],
-.tag[data-tag^="-author:"] {
-	background-color: var(--tag_author);
+.tag[data-tag^="creator:"],
+.tag[data-tag^="-creator:"] {
+	background-color: var(--tag_creator);
 }
-.tag[data-tag^="name:"],
-.tag[data-tag^="-name:"] {
-	background-color: var(--tag_name);
+.tag[data-tag^="character:"],
+.tag[data-tag^="-character:"] {
+	background-color: var(--tag_character);
 }
 .tag[data-tag^="source:"],
 .tag[data-tag^="-source:"] {
