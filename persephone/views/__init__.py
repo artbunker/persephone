@@ -418,8 +418,8 @@ def random_public_media():
 # different endpoints and custom filters to create other limited searches
 @persephone.route('/media/search')
 @persephone.route('/media/search/<medium_id>', methods=['GET', 'POST'])
-def search_public_media(medium_id=None, rss=False):
-	if not rss and not terms_agreed():
+def search_public_media(medium_id=None, rss=False, json=False):
+	if not rss and not json and not terms_agreed():
 		return terms(agreement_form=True, medium_id=medium_id)
 	override_filters, management_mode, omit_future = build_search_override()
 	return search_media(
@@ -433,6 +433,7 @@ def search_public_media(medium_id=None, rss=False):
 		omit_future=omit_future,
 		medium_id=medium_id,
 		rss=rss,
+		json=json,
 		rss_endpoint='persephone.search_public_media_rss',
 		rss_media_endpoint='persephone.search_public_media',
 	)
@@ -440,6 +441,11 @@ def search_public_media(medium_id=None, rss=False):
 @persephone.route('/media/search/rss')
 def search_public_media_rss():
 	return search_public_media(rss=True)
+
+
+@persephone.route('/media/search.json')
+def search_public_media_json():
+	return search_public_media(json=True)
 
 # management media search
 @persephone.route('/manager/media')
