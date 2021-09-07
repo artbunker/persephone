@@ -149,10 +149,10 @@ let refresh_blacklist = function() {
 	if (previewable_blacklist) {
 		document.documentElement.classList.add('previewable_blacklist');
 	}
-	let hide_blacklisted = localStorage.getItem('media_preference_hide_blacklisted');
-	document.documentElement.classList.remove('hide_blacklisted');
-	if (hide_blacklisted) {
-		document.documentElement.classList.add('hide_blacklisted');
+	let show_blacklisted = localStorage.getItem('media_preference_show_blacklisted');
+	document.documentElement.classList.add('hide_blacklisted');
+	if (show_blacklisted) {
+		document.documentElement.classList.remove('hide_blacklisted');
 	}
 };
 let media_preferences_dim = document.createElement('div');
