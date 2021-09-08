@@ -444,8 +444,9 @@ def search_public_media_rss():
 
 
 @persephone.route('/media/search.json')
-def search_public_media_json():
-	return search_public_media(json=True)
+@persephone.route('/media/search/<medium_id>.json')
+def search_public_media_json(medium_id=None):
+	return search_public_media(medium_id=medium_id, json=True)
 
 # management media search
 @persephone.route('/manager/media')
