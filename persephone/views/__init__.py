@@ -417,7 +417,7 @@ def random_public_media():
 # copy and rename search_public_media and search_public_media_rss with 
 # different endpoints and custom filters to create other limited searches
 @persephone.route('/media/search')
-@persephone.route('/media/search/<medium_id>', methods=['GET', 'POST'])
+@persephone.route('/media/view/<medium_id>', methods=['GET', 'POST'])
 def search_public_media(medium_id=None, rss=False, json=False):
 	if not rss and not json and not terms_agreed():
 		return terms(agreement_form=True, medium_id=medium_id)
@@ -444,7 +444,7 @@ def search_public_media_rss():
 
 
 @persephone.route('/media/search.json')
-@persephone.route('/media/search/<medium_id>.json')
+@persephone.route('/media/view/<medium_id>.json')
 def search_public_media_json(medium_id=None):
 	return search_public_media(medium_id=medium_id, json=True)
 
