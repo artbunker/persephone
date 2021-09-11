@@ -162,6 +162,22 @@
 .tag[data-tag^="-mirror:"] {
 	background-color: var(--tag_mirror);
 }
+.tag[data-tag^="url:"],
+.tag[data-tag^="-url:"] {
+	background-color: var(--tag_mirror);
+}
+.tag[data-tag^="source url:"],
+.tag[data-tag^="-source url:"] {
+	background-color: var(--tag_mirror);
+}
+.tag[data-tag^="creator url:"],
+.tag[data-tag^="-creator url:"] {
+	background-color: var(--tag_mirror);
+}
+.tag[data-tag^="character url:"],
+.tag[data-tag^="-character url:"] {
+	background-color: var(--tag_mirror);
+}
 .tag[data-tag^="superior of:"],
 .tag[data-tag^="-superior of:"],
 .tag[data-tag^="inferior of:"],
