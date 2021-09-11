@@ -602,7 +602,7 @@ def response_add_meta_graph(response):
 		if -1 == data.find('property="og:image"', 0, head_end):
 			# add general site meta graph image
 			if g.persephone_config['site_image_uri']:
-				site_image = g.persephone_config['site_image_uri']
+				site_image = request.url_root.rstrip('/') + g.persephone_config['site_image_uri']
 			else:
 				site_image = g.persephone_config['static_persephone_uri'].format(
 					'persephone_128.png',
@@ -610,7 +610,7 @@ def response_add_meta_graph(response):
 			graph_tags += (
 				'<meta name="twitter:image" content="' + site_image + '">'
 					+ '<meta property="og:image" content="' + site_image + '">'
-					+ '<meta name="twitter:card" content="summary_large_image">'
+					+ '<meta name="twitter:card" content="summary">'
 			)
 		if graph_tags:
 			# add graph tags before title element
