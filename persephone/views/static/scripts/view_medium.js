@@ -280,3 +280,61 @@ switch (medium.dataset.category) {
 		image_medium_loaded(medium);
 		break;
 }
+
+
+let apply_blacklisted_tags = function() {
+	const urlParams = new URLSearchParams(window.location.search);
+	let blacklisted_tags = localStorage.getItem('media_preference_blacklisted_tags');
+	let default_blacklisted_tags = document.querySelector('meta[name="default_blacklisted_tags"]');
+	if ('string' == typeof blacklisted_tags) {
+		blacklisted_tags = blacklisted_tags.split('#');
+	}
+	else if (default_blacklisted_tags) {
+		localStorage.setItem('media_preference_blacklisted_tags', default_blacklisted_tags.content);
+		blacklisted_tags = default_blacklisted_tags.content.split('#');
+	}
+	else {
+		localStorage.setItem('media_preference_blacklisted_tags', '');
+		blacklisted_tags = [];
+	}
+	if (urlParams.has('add-blacklist')) {
+		const blacklistParam = urlParams.get('add-blacklist');
+		blacklisted_tags = [...new Set([...blacklisted_tags,...blacklistParam.split('#')])]
+		localStorage.setItem('media_preference_blacklisted_tags', blacklisted_tags.join('#'));
+		urlParams.delete('add-blacklist');
+	}
+	let thumbnails = document.querySelectorAll('.thumbnail');
+	for (let i = 0; i < thumbnails.length; i++) {
+		let thumbnail = thumbnails[i];
+		thumbnail.classList.remove('blacklist');
+		for (let j = 0; j < blacklisted_tags.length; j++) {
+			let blacklisted_tag = blacklisted_tags[j];
+			if (
+				thumbnail.title.includes('#' + blacklisted_tag + ' #')
+				|| '#' + blacklisted_tag == thumbnail.title.substring(
+					thumbnail.title.length - (blacklisted_tag.length + 1)
+				)
+			) {
+				thumbnail.classList.add('blacklist');
+			}
+		}
+	}
+};
+
+let refresh_blacklist = function() {
+	let previewable_blacklist = localStorage.getItem('media_preference_previewable_blacklist');
+	document.documentElement.classList.remove('previewable_blacklist');
+	if (previewable_blacklist) {
+		document.documentElement.classList.add('previewable_blacklist');
+	}
+	let show_blacklisted = localStorage.getItem('media_preference_show_blacklisted');
+	document.documentElement.classList.add('hide_blacklisted');
+	if (show_blacklisted) {
+		document.documentElement.classList.remove('hide_blacklisted');
+	}
+};
+
+document.addEventListener('DOMContentLoaded', e => {
+	apply_blacklisted_tags();
+	refresh_blacklist();
+});
