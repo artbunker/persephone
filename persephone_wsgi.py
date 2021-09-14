@@ -53,7 +53,6 @@ app = Flask(
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300000
 
 # blueprints
-app.register_blueprint(shortener, url_prefix='/to')
 app.register_blueprint(legal, url_prefix='/legal')
 app.register_blueprint(accounts_signed_out, url_prefix='/accounts')
 app.register_blueprint(accounts_signed_in, url_prefix='/accounts')
@@ -71,6 +70,7 @@ app.register_blueprint(patreon_admin, url_prefix='/admin/patreon')
 app.register_blueprint(media_static, url_prefix='/media')
 app.register_blueprint(media_supplemental, url_prefix='/media')
 app.register_blueprint(media_api, url_prefix='/api/media')
+app.register_blueprint(shortener, url_prefix='/')
 
 def get_config(config_file, config_name):
 	config_path = os.path.join(g.persephone_directory, config_file)

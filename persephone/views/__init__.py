@@ -169,6 +169,32 @@ def pages(page_name):
 	except:
 		abort(404, 'Page not found')
 
+# @persephone.route('/guidelines')
+# def guidelines():
+# 	if not terms_agreed():
+# 		return terms(agreement_form=True)
+# 	media = g.media.search_media(filter={'with_tags': 'Reference Sheet'})
+# 	return render_template(
+# 		'guidelines.html',
+# 		media=media,
+# 		kwargs={}
+# 	)
+
+@persephone.route('/sp/<page_name>')
+def spage(page_name):
+	if not terms_agreed():
+		return terms(agreement_form=True)
+	try:
+		media = g.media.search_media(filter={'with_tags': 'spage:' + page_name})
+		return render_template(
+			'spage_' + page_name + '.html',
+			media=media,
+			kwargs={}
+		)
+	except:
+		abort(404, 'Page not found')
+	
+
 # legal
 @persephone.route('/legal')
 def legal():
@@ -1171,7 +1197,7 @@ def search_user_media(user_identifier, medium_id=None, rss=False):
 	)
 
 @persephone.route('/profile')
-@persephone.route('/<user_identifier>')
+@persephone.route('/users/<user_identifier>')
 def user_profile(user_identifier=None):
 	if not user_identifier:
 		if not g.accounts.current_user:
