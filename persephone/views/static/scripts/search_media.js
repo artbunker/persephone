@@ -158,6 +158,8 @@ let refresh_blacklist = function() {
 let media_preferences_dim = document.createElement('div');
 media_preferences_dim.classList.add('media_preferences_dim');
 let apply_blacklisted_tags = function() {
+	const urlParams = new URLSearchParams(window.location.search);
+	console.log(urlParams.get('add-blacklist'));
 	let blacklisted_tags = localStorage.getItem('media_preference_blacklisted_tags');
 	let default_blacklisted_tags = document.querySelector('meta[name="default_blacklisted_tags"]');
 	if ('string' == typeof blacklisted_tags) {
@@ -170,6 +172,11 @@ let apply_blacklisted_tags = function() {
 	else {
 		localStorage.setItem('media_preference_blacklisted_tags', '');
 		blacklisted_tags = [];
+	}
+	if (urlParams.has('add-blacklist')) {
+		const blacklistParam = urlParams.get('add-blacklist');
+		blacklisted_tags = [...new Set([...blacklisted_tags,...blacklistParam.split('#')])]
+		localStorage.setItem('media_preference_blacklisted_tags', blacklisted_tags.join('#'));
 	}
 	let thumbnails = document.querySelectorAll('.thumbnail');
 	for (let i = 0; i < thumbnails.length; i++) {
