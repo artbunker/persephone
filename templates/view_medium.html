@@ -7,7 +7,10 @@
 		{% set title = 'Untitled' %}
 	{% endif %}
 	<div class="view_medium_wrapper">
-		<h2>{{ title }}</h2>
+		{% if 'title' in medium.semantic_tags %}
+			{% set title = medium.semantic_tags['title'] %}
+			<h2>{{ title }}</h2>
+		{% endif %}
 		{% include 'medium_summary.html' %}
 		{% include 'view_medium_management_info.html' %}
 		{% include 'medium_info.html' %}
