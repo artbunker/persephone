@@ -687,7 +687,7 @@ div[data-mime="application/x-shockwave-flash"] .summary::after {
 /*edit medium*/
 #edit_medium_preview {
 	font-size: 0;
-	width: 480px;
+	min-width: 480px;
 	max-width: 100%;
 	/*fractional pixels from em dimensions are eating a form border?*/
 	margin-top: 0.5px;
