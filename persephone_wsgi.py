@@ -570,6 +570,8 @@ def response_add_cache_headers(response):
 				#TODO this is a little hacky
 				and 'media_static.' != request.endpoint[:13]
 				and '/static/' not in request.path
+				and 'media_api.api_fetch_summary' != request.endpoint[:27]
+				and 'media_api.api_fetch_medium' != request.endpoint[:26]
 			)
 		):
 		response.cache_control.max_age = 0
@@ -577,6 +579,12 @@ def response_add_cache_headers(response):
 		if 'Expires' in response.headers:
 			del response.headers['Expires']
 		response.headers['Expires'] = formatdate(timeval=None, localtime=False, usegmt=True);
+	if(
+			'media_api.api_fetch_summary' == request.endpoint[:27]
+			or 'media_api.api_fetch_medium' == request.endpoint[:26]
+	):
+		response.cache_control.public = False
+		response.cache_control.private = True
 	return response
 
 def response_add_meta_graph(response):
